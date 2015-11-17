@@ -3,6 +3,7 @@
 ## What's Going On
 
 This extension generates the optimum jquery selector on alt+click of the desired element. It follows these rules:
+
 1. If the desired element has an ID, or if a parent has an ID, that (closest) ID becomes the first part of the selector. 
 2. Directly after the ID, ".find" is used to chain the rest of the selector. 
 3. The selector will not contain more than 3 elements.
