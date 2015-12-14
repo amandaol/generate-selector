@@ -163,34 +163,31 @@ $(document)
 		var thisIndex = $(this).attr("data-index");
 		var internalElementsOutput = "";
 
-		var sortAndStringify = function(x) {
-			// sort from largest index to smallest index
-	        x.sort(function(a,b) {
-	            return parseFloat(b.index) - parseFloat(a.index);
-	        });
-	        // stringify
-			$(x).each(function() {
-				internalElementsOutput += this.content + " ";
-			})
-			console.log(internalElementsOutput);
-		}
-
 		if (!$(this).hasClass('added')) {
-			console.log("add a selector");
 			$(this).addClass('added');
 			var group = {};
 			group.index = thisIndex;
 			group.content = $(this).text();
 			internalElements.push(group);
-			sortAndStringify(internalElements);
 		} else {
-			console.log("remove a selector");
 			$(this).removeClass('added');
-			var internalElements1 = internalElements.filter(function(element) {
-				return element.index != thisIndex;
+			// get index of item I need to remove 
+			var indexInArray = $.map(internalElements, function(obj, index) {
+			    if(obj.index == thisIndex) {
+			        return index;
+			    }
 			})
-			sortAndStringify(internalElements1);
+			internalElements.splice(indexInArray,1);
 		}
+
+        internalElements.sort(function(a,b) {
+            return parseFloat(b.index) - parseFloat(a.index);
+        });
+        // stringify
+		$(internalElements).each(function() {
+			internalElementsOutput += this.content + " ";
+		})
+		// console.log(internalElementsOutput);
 
 		// include middleElement as needed
 		if (!$(this).hasClass('middleElement')) {
@@ -198,7 +195,6 @@ $(document)
 		} else {
 			var finalElement = lastElement;
 		}
-		// console.log(internalElementsOutput);
 		var newPath = selector + '.find("' +internalElementsOutput + finalElement+ '")';
-		// console.log(newPath);
+		console.log(newPath);
 	})
