@@ -21,3 +21,6 @@ For more reading: [https://learn.jquery.com/performance/optimize-selectors/](htt
 
 ## Icon
 Icon made by [Freepik](http://www.flaticon.com) and licensed under [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/).
+
+## Change log
+v.1.2 - Added "View intermediate selectors" button. This allows the user to tweak the selector they've been given to something more suitable (since the tool can't know all your reasoning for picking a different selector path).
