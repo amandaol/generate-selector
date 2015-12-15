@@ -88,20 +88,21 @@ var main = function(e) {
 				path = selector + '.find("'+middleElement+ ' ' +lastElement+'")';
 				if (!$(element).parent().parent().is(id)) { // 4+ elemenets // must contruct internal elements
 					// get count of elements in between 
-					extraSelectors += '<div>'+lastElement+'</div>';
-					extraSelectors += '<div class="middleElement editable data-index=0 added">'+middleElement+'</div>';
+					extraSelectors += '<div class="uneditable">#' + idName + '</div>';
 					var parents = eval(path).parentsUntil("#" + idName);
-					parents = parents.slice(1) // select all parts of element except the first one
-					var parentsNames = parents.each(function(index) {
+					parents.each(function(index) {
 						// if class(es), add those
 						if ($(this).attr("class") === undefined) {
-							var element = $(this.nodeName).toLowerCase();
+							var element = (this.nodeName).toLowerCase();
 						} else {
 							var element = "." + (this.className).trim().split(' ').join('.');
 						}
-						extraSelectors += '<div class="editable" data-index='+(index+1)+'>'+element+'</div>';
+						// REVERSE THE ORDER THAT THESE GET ADDED
+							// oh just make an array of the data, then populate the string
+						extraSelectors += '<div class="editable internal" data-index='+(index+1)+'>'+element+'</div>';
 					})
-					extraSelectors += '<div>#' + idName + '</div>';
+					// extraSelectors += '<div class="middleElement editable data-index=0 added">'+middleElement+'</div>';
+					extraSelectors += '<div class="uneditable">'+lastElement+'</div>';
 				}
 			} 
   		}
@@ -129,7 +130,7 @@ var main = function(e) {
 
   	// build/display message
   	var message = '<textarea class="js-copytextarea">'+path+'</textarea><p class="secondary" tabindex="0">'+countText+'</p>';
-  	message += '<button>Edit Selector Path</button>';
+  	message += '<button>Edit Selector Path</button> <button class="revert">Revert</button>';
   	message += '<div class="extraSelectors">'+extraSelectors+'</div>';
   	$("#overlay-primary")
   		.show()
@@ -145,6 +146,8 @@ var main = function(e) {
   	copyTextarea.selectionStart = copyTextarea.selectionEnd = -1; // deselect path // un-highlights text in input field
   	$("#overlay-primary").find("p.secondary").focus(); // pulls cursor out of textarea
 }
+
+var mainOverlay = $("#overlay-primary");
 
 // user action // triggers main function
 $(document)
@@ -187,7 +190,6 @@ $(document)
 		$(internalElements).each(function() {
 			internalElementsOutput += this.content + " ";
 		})
-		// console.log(internalElementsOutput);
 
 		// include middleElement as needed
 		if (!$(this).hasClass('middleElement')) {
@@ -196,5 +198,17 @@ $(document)
 			var finalElement = lastElement;
 		}
 		var newPath = selector + '.find("' +internalElementsOutput + finalElement+ '")';
-		console.log(newPath);
+		$(".js-copytextarea").val(newPath);
+	})
+	// revert path to original path
+	.on("click", ".revert", function() {
+		$(".js-copytextarea").val(path);
+		// empty internalElements array
+		var arrayCount = internalElements.length;
+		internalElements.splice(0,arrayCount);
+		// revert selectors to default classes
+		mainOverlay
+			.find("div.editable").removeClass('added')
+			.end()
+			.find("div.middleElement").addClass('added');
 	})
