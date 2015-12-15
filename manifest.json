@@ -15,6 +15,10 @@
         "128": "icon128.png" 
     },
 
+   "web_accessible_resources": [
+    "lock.png"
+  ],
+
   "content_scripts" : [{
       "matches": ["http://*/*", "https://*/*"],
       "js" : ["jquery-1.11.3.min.js", "main.js"]
