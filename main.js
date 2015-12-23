@@ -1,5 +1,5 @@
 // append styles to head
-var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; } .extraSelectors {/*display: none;*/ margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; margin-bottom: 10px; } .extraSelectors .uneditable {/*background-color: #5E6F56;*/ background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 99%; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .editable.added:last-child {background-color: #AE849F; } .extraSelectors .editable.added {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable:last-child:hover {background-color: #E8C7EA; }</style>';
+var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; } .optimizer-container section button {padding: 5px 10px; color: #080808; border: 1px solid #080808; background-color: #F4F1F2; font-size: 14px; } .optimizer-container section button:hover {text-shadow:none; } .extraSelectors {display: none; margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } .extraSelectors .uneditable {/*background-color: #5E6F56;*/ background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 99%; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .added .editable {background-color: #AE849F; } .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable:last-child:hover {background-color: #E8C7EA; }</style>';
 $("head").append(oneLineCSS);
 
 // overlay-initial: not visible but which will, when display:block, block all user events not associated with this script
@@ -12,15 +12,21 @@ var markup = $('<div id="overlay-initial"></div>\
 $("body").append(markup);
 
 var path, selector, middleElement, lastElement;
-var extraSelectorsData = []; // helps build the vertical list
-var internalElements = []; // helps build the path 
+var potentialSelectors = []; // all available selectors, grouped by level // excludes root and element clicked-on
+var chosenSelectors = []; // selectors chosen from the potentialSelectors array
+var root = $("#overlay-primary");
 
-// load middleElement selector into array for future use
+// load middleElement selector(s) into chosenSelectors array because they are default values
 var loadME = function() {
-	var middleElementgroup = {};
-	middleElementgroup.index = extraSelectorsData.length;
-	middleElementgroup.content = middleElement;
-	internalElements.push(middleElementgroup);
+	// find elements within potentialSelectors with an index of 1 // add to chosenSelectors
+	for(var i=0; i < potentialSelectors.length; i++){
+		if (potentialSelectors[i].index == 1) {
+			var newEntry = {};
+			newEntry.index = potentialSelectors[i].index;
+			newEntry.content = potentialSelectors[i].class;
+			chosenSelectors.push(newEntry);
+		}	    
+	}
 }
 
 var getCountText = function(path) {
@@ -41,8 +47,11 @@ var copyPath = function(firstTime) {
 	if (firstTime) {
 		$("#overlay-primary").find(".optimizer-container .secondary").after('<p class="msg">'+msg+'</p>');
 	} else {
-		$("#overlay-primary").find(".optimizer-container .msg")
-			.fadeOut('100').fadeIn('100');
+		$("#overlay-primary")
+			.find(".optimizer-container .msg")
+				.fadeOut('100').fadeIn('100')
+			.siblings('.secondary')
+				.fadeOut('100').fadeIn('100');
 	}
 	copyTextarea.selectionStart = copyTextarea.selectionEnd = -1; // deselect path // un-highlights text in input field
 	$("#overlay-primary").find("p.secondary").focus(); // pulls cursor out of textarea
@@ -57,6 +66,9 @@ var main = function(e) {
 	var x = e.clientX;
 	var y = e.clientY;
     var element = document.elementFromPoint(x, y);
+    // mark element for future use
+    var elementMarker = Date.now();
+    $(element).attr("data-selected", elementMarker);
 
   	var id = $(element).closest('[id]');
   	path = "";
@@ -64,6 +76,7 @@ var main = function(e) {
   	// position overlay correctly
   	$("body, html").css("overflow", "hidden");
 
+  	// takes string of classes, returns string so that each is joined by a "." if there are multiple classes
   	var multipleClasses = function(classes) {
   		if (classes.indexOf(" ") > -1) {
   			classes = classes.trim().split(' ').join('.');
@@ -71,6 +84,7 @@ var main = function(e) {
   		return classes;
   	}
   	
+  	// in path, in the .find() section, this is the second element from the right 
   	var getMiddleElement = function(elementPath, includeTag) {
 		var middleElement = $(elementPath).parent().attr("class");
 		if (middleElement === undefined || $.trim(middleElement).length === 0) { // if no class or class is empty
@@ -86,24 +100,26 @@ var main = function(e) {
   	}
 
 	// get last element
-	var lastElementTag = $(element).prop("tagName").toLowerCase();
+	var lastElementTag = $(element).prop("tagName").toLowerCase(); // start with the tag name
 	lastElement = lastElementTag;
-	// if class(es), add those
-	if ($(element).attr("class") != undefined) {
+	// if class(es), add those to the tag name
+	if ($(element).attr("class") !== undefined && $.trim($(element).attr("class")).length > 0) {
 		var lastElementClass = $(element).attr("class");
 		lastElementClass = multipleClasses(lastElementClass);
 		lastElement = lastElementTag +'.'+ lastElementClass;
 	} 
 
+	// if there is more than one DOM level between the selected element and the root (or ID), make a list of them here
+	// this variable will contain markup
 	var extraSelectors = '';
-
+	var disabled = "disabled";
   	// contstruct element path which goes before the last element
   	if (id.length > 0) { // if ID exists, start with that
   		var idName = id.attr("id");
   		selector = '$("#'+idName+'")';
   		if ($(element).is(id)) { // if ID is from current element
   			path = selector;
-  		} else { // if ID is from a parent
+  		} else { // if ID is from a parent, grandparent, etc.
 			if ($(element).parent().is(id)) { // 2 elements
 				path = selector + '.find("'+lastElement+'")';
 			} else { // 3+ elements
@@ -111,22 +127,23 @@ var main = function(e) {
 				path = selector + '.find("'+middleElement+ ' ' +lastElement+'")';
 
 				if (!$(element).parent().parent().is(id)) { // 4+ elemenets // must contruct internal elements
-					// get count of elements in between 
-					extraSelectors += '<div class="uneditable">#' + idName + '</div>';
-					var parents = eval(path).eq(0).parentsUntil("#" + idName);
+					// set buttons to be clickable
+					disabled = "";
+					extraSelectors += '<div class="parent"><div class="uneditable">#' + idName + '</div></div>';
+					var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName);
 					var parentIndex = 0
-					var parent = [];
 					parents.each(function(index) {
 						parentIndex++; 
-						// if class(es), add those
-						if ($(this).attr("class") === undefined) { // also need to factor for if class is empty // attribute exists but no value
-							// var element = (this.nodeName).toLowerCase();
+						var classes = $(this).attr("class");
+						// if no class(es), add tag
+						console.log(classes);
+						if (classes === undefined || $(this).attr("class").trim().length === 0) { 
 							var element = {};
 							element.index = parentIndex;
 							element.class = (this.nodeName).toLowerCase();
-							parent.push(element);
+							potentialSelectors.push(element);
 							console.log(element);
-						} else {
+						} else { // if class(es), add class(es)
 							var classes = "." + (this.className).trim().replace(/ +/g, " .");
 							if (classes.indexOf(".", 1) > 0) { // if classes contains more than one "."
 								var elementSplit = classes.split("."); // array of all classes
@@ -135,31 +152,36 @@ var main = function(e) {
 										var element = {};
 										element.index = parentIndex;
 										element.class = "." + elementSplit[index].trim();
-										parent.push(element);
+										potentialSelectors.push(element);
 										console.log(element);
 									}
 								})
-							} else {
+							} else { // only one class
 								var element = {};
 								element.index = parentIndex;
 								element.class = "." + (this.className).trim();
-								parent.push(element);
+								potentialSelectors.push(element);
 								console.log(element);
 							}
 						}
-						// extraSelectorsData.push(element);
 					})
-					// console.log(parent);
 
-					extraSelectorsData.reverse();
-					$(extraSelectorsData).each(function(index) {
-						if ((index+1) == extraSelectorsData.length) { // last one // this one requires an extra class
-							extraSelectors += '<div class="editable added" data-index='+(index+1)+'>'+extraSelectorsData[index]+'</div>';
-						} else { // all others
-							extraSelectors += '<div class="editable" data-index='+(index+1)+'>'+extraSelectorsData[index]+'</div>';
+					potentialSelectors.reverse(); // visually, we want the highest number index displayed first
+					var prevIndex = potentialSelectors[0].index; // max index in the array
+					extraSelectors += '<div class="parent">';
+					$(potentialSelectors).each(function(index) {
+						var last = ""; // class needed only for the last group of elements
+						if ((this.index) == 1) { 
+							last = "added";
 						}
+						if (prevIndex !== this.index) { // start new group
+							extraSelectors += '</div><div class="parent"><div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
+						} else { // first one in loop // and all new ones which don't start a new group
+							extraSelectors += '<div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
+						}
+						prevIndex = this.index;
 					})
-					extraSelectors += '<div class="uneditable">'+lastElement+'</div>';
+					extraSelectors += '</div><div class="parent"><div class="uneditable">'+lastElement+'</div></div>';
 				}
 			} 
   		}
@@ -182,32 +204,30 @@ var main = function(e) {
 
   	// build/display message
   	var message = '<textarea class="js-copytextarea">'+path+'</textarea><p class="secondary" tabindex="0">'+countText+'</p>';
-  	message += '<section><button class="edit">Edit Selector Path</button> <button class="revert">Revert</button>';
+  	message += '<section><button class="edit" '+disabled+' title="You can edit the selector path only when there are more selectors to choose from than what\'s already in the selector path.">Edit Selector Path</button> <button class="revert" '+disabled+' title="This button is available when the Edit button is available.">Revert</button>';
   	message += '<div class="extraSelectors">'+extraSelectors+'</div></section>';
   	// message += '<img src="chrome-extension://ilhdahgielkcaoodgjapamnkldjcbpla/lock.png">';
-  	$("#overlay-primary")
+  	root
   		.show()
   		.find(".content").html(message);
   	$('.optimizer-container').addClass('stat-show');
 
-  	var lockUrl = chrome.extension.getURL('lock.png');
+  	var lockUrl = chrome.extension.getURL('lock.png'); // image used in first and last displayed selectors
   	$(".uneditable").css("background-image", "url("+lockUrl+")");
 
   	copyPath(true);
+
+  	// add middle selectors to path, because they are default value(s)
+  	loadME();
 }
 
-var mainOverlay = $("#overlay-primary");
-
 var closeOverlay = function() {
-	$("#overlay-primary").hide();
+	root.hide();
 	// style page now that overlay is gone
 	$("body, html").css("overflow", "auto");
-	// empty extraSelectorsData array
-	var arrayCount = extraSelectorsData.length;
-	extraSelectorsData.splice(0,arrayCount);
-	// empty internalElements array
-	var arrayCount1 = internalElements.length;
-	internalElements.splice(0,arrayCount1);
+	// empty potentialSelectors and chosenSelectors arrays
+	potentialSelectors.splice(0,potentialSelectors.length);
+	chosenSelectors.splice(0,chosenSelectors.length);
 }
 
 // user action // triggers main function
@@ -228,55 +248,84 @@ $(document)
 	.on("click", ".editable", function() {
 		// if this element has not been added, add it to the array
 		var thisIndex = $(this).attr("data-index");
-		var internalElementsOutput = "";
+		var thisContent = $(this).text();
+		var chosenSelectorsOutput = "";
 
 		if (!$(this).hasClass('added')) {
 			$(this).addClass('added');
 			var group = {};
 			group.index = thisIndex;
 			group.content = $(this).text();
-			internalElements.push(group);
+			chosenSelectors.push(group);
 		} else {
 			$(this).removeClass('added');
 			// get index of item I need to remove 
-			var indexInArray = $.map(internalElements, function(obj, index) {
-			    if(obj.index == thisIndex) {
+			var indexInArray = $.map(chosenSelectors, function(obj, index) {
+			    if(obj.content == thisContent) {
 			        return index;
 			    }
 			})
-			internalElements.splice(indexInArray,1);
+			// remove from array
+			chosenSelectors.splice(indexInArray,1);
 		}
 
-        // sort elements in correct order // this is based off their index
-        internalElements.sort(function(a,b) {
-            return parseFloat(a.index) - parseFloat(b.index);
+        // sort elements in correct order // this is based off their data-index
+        chosenSelectors.sort(function(a,b) {
+            return parseFloat(b.index) - parseFloat(a.index);
         });
-        // stringify
-		$(internalElements).each(function() {
-			internalElementsOutput += this.content + " ";
+
+        // stringify, i.e. construct the string which will display as part of the path
+		var prevIndex = "";
+
+		// if chosenSelectors contains the middleElement, set prevIndex to 1
+		for (var i=0; i < chosenSelectors.length; i++) {
+			if (chosenSelectors[i].index == 1) {
+				prevIndex = 1;
+			}
+		}
+
+		$(chosenSelectors).each(function(index) {
+			if (prevIndex == this.index) { // same group, no space
+				chosenSelectorsOutput += this.content;
+			} else { // new group
+				// if it's the highest data-index, i.e. it's visually furthest on the left, remove the space
+				var maxIndex = chosenSelectors[0].index; // max index in the array
+				if (this.index == maxIndex) {
+					chosenSelectorsOutput += this.content;
+				} else {
+					chosenSelectorsOutput += " " + this.content;
+				}
+			}
+			prevIndex = this.index;
 		})
 
-		var newPath = selector + '.find("' +internalElementsOutput + lastElement+ '")';
+		// add space before lastElement, if needed
+		var space = "";
+		if (chosenSelectorsOutput.length > 0) {
+			space = " ";
+		}
+
+		var newPath = selector + '.find("' +chosenSelectorsOutput + space + lastElement+ '")';
 		// display new path
 		$(".js-copytextarea").val(newPath);
 		// update count and copy path
-		var countText = getCountText(path);
-		mainOverlay.find(".secondary").html(countText);
+		var countText = getCountText(newPath);
+		root.find(".secondary").html(countText);
 		copyPath();
 	})
 	// revert path to original path
 	.on("click", ".revert", function() {
 		$(".js-copytextarea").val(path);
-		// empty internalElements array
-		var arrayCount = internalElements.length;
-		internalElements.splice(0,arrayCount);
-		// load middleElement into internalElements because it's a default
+		// empty chosenSelectors array
+		var arrayCount = chosenSelectors.length;
+		chosenSelectors.splice(0,arrayCount);
+		// load middleElement into chosenSelectors because it's a default
 		loadME();
 		// revert selectors to default classes
-		mainOverlay
+		root
 			.find("div.editable").removeClass('added')
 			.end() 
-			.find("div.editable").eq(extraSelectorsData.length-1).addClass('added'); // middleElement
+			.find("div.editable").eq(potentialSelectors.length-1).parent().children().addClass('added'); // middleElement(s)
 		copyPath();
 	})
 	// user closes the lightbox
