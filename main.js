@@ -57,7 +57,7 @@ var copyPath = function(firstTime) {
 	$("#overlay-primary").find("p.secondary").focus(); // pulls cursor out of textarea
 }
 
-// open overlay, build some content, display content
+// open overlay, build content, display content
 var main = function(e) {
   	$(document).off("click", main); // allows user to immediately close the overlay // otherwise the main function would fire first 
     $("#overlay-initial").hide(); // remove invisible overlay so that the "element" variable actualy gets the right element 
@@ -73,10 +73,10 @@ var main = function(e) {
   	var id = $(element).closest('[id]');
   	path = "";
 
-  	// position overlay correctly
+  	// position overlay correctly // followed Pinterest example
   	$("body, html").css("overflow", "hidden");
 
-  	// takes string of classes, returns string so that each is joined by a "." if there are multiple classes
+  	// takes string of classes, returns string where each class is joined by a "." (if there are multiple classes)
   	var multipleClasses = function(classes) {
   		if (classes.indexOf(" ") > -1) {
   			classes = classes.trim().split(' ').join('.');
@@ -89,8 +89,7 @@ var main = function(e) {
 		var middleElement = $(elementPath).parent().attr("class");
 		if (middleElement === undefined || $.trim(middleElement).length === 0) { // if no class or class is empty
 			middleElement = $(elementPath).parent().prop("tagName").toLowerCase();
-		} else {
-			middleElement = multipleClasses(middleElement);
+		} else { // if has classes
 			middleElement = "." + multipleClasses(middleElement);
 			if (includeTag == true) {
 				middleElement = $(elementPath).prop("tagName").toLowerCase() + middleElement;
@@ -109,11 +108,9 @@ var main = function(e) {
 		lastElement = lastElementTag +'.'+ lastElementClass;
 	} 
 
-	// if there is more than one DOM level between the selected element and the root (or ID), make a list of them here
-	// this variable will contain markup
-	var extraSelectors = '';
+  	// contstruct path 
+	var extraSelectors = ''; // contains markup for extra selectors
 	var disabled = "disabled";
-  	// contstruct element path which goes before the last element
   	if (id.length > 0) { // if ID exists, start with that
   		var idName = id.attr("id");
   		selector = '$("#'+idName+'")';
@@ -125,18 +122,32 @@ var main = function(e) {
 			} else { // 3+ elements
 				middleElement = getMiddleElement(element);
 				path = selector + '.find("'+middleElement+ ' ' +lastElement+'")';
-
-				if (!$(element).parent().parent().is(id)) { // 4+ elemenets // must contruct internal elements
+				// 4+ elemenets  // so, if there is more than one DOM level between the selected element and the root (or ID), make a list for user to select from
+				if (!$(element).parent().parent().is(id)) { 
 					// set buttons to be clickable
 					disabled = "";
 					extraSelectors += '<div class="parent"><div class="uneditable">#' + idName + '</div></div>';
-					var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName);
 					var parentIndex = 0
+					// populate potentialSelectors with clicked element
+						// cycle through - could have multiple classes
+						// mark tag specially - it can not be edited
+						// make sure index is 0 - this is a special DOM level 
+					// get all parents
+					var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack();
+					// var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack("[data-selected="+elementMarker+"]");
+					// add lastElement to parents array... so it's not really just parents now!
+					// parents.splice(0, 0, $(lastElement).eq(0));
+					console.log("parents updated, a different way");
+					console.log(parents);
+
+					// from parents, construct list of all classes (or tags), per DOM level, in order
 					parents.each(function(index) {
-						parentIndex++; 
+						// if (index != (parents.length -1)) {
+							parentIndex++; 
+						// }
 						var classes = $(this).attr("class");
-						// if no class(es), add tag
 						console.log(classes);
+						// if no class(es), add tag to potentialSelectors array, along with its DOM level
 						if (classes === undefined || $(this).attr("class").trim().length === 0) { 
 							var element = {};
 							element.index = parentIndex;
@@ -147,6 +158,7 @@ var main = function(e) {
 							var classes = "." + (this.className).trim().replace(/ +/g, " .");
 							if (classes.indexOf(".", 1) > 0) { // if classes contains more than one "."
 								var elementSplit = classes.split("."); // array of all classes
+								// add each class to potentialSelectors array, along with its DOM level
 								$(elementSplit).each(function(index){
 									if (index !== 0) {
 										var element = {};
@@ -156,7 +168,7 @@ var main = function(e) {
 										console.log(element);
 									}
 								})
-							} else { // only one class
+							} else { // only one class, add to potentialSelectors array
 								var element = {};
 								element.index = parentIndex;
 								element.class = "." + (this.className).trim();
@@ -166,22 +178,32 @@ var main = function(e) {
 						}
 					})
 
-					potentialSelectors.reverse(); // visually, we want the highest number index displayed first
-					var prevIndex = potentialSelectors[0].index; // max index in the array
-					extraSelectors += '<div class="parent">';
+					// potentialSelectors.reverse(); // visually, we want the highest number index displayed first
+					// var prevIndex = potentialSelectors[0].index; // max index in the array
+					// var prevIndex = parents.length; // max index in the array
+					var prevIndex = 0; // max index in the array
+					// extraSelectors += '<div class="parent">';
+					// build markup // populate extraSelectors with all classes/tags from potentialSelectors
 					$(potentialSelectors).each(function(index) {
 						var last = ""; // class needed only for the last group of elements
-						if ((this.index) == 1) { 
+						if ((this.index) == parents.length) { 
 							last = "added";
 						}
-						if (prevIndex !== this.index) { // start new group
-							extraSelectors += '</div><div class="parent"><div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
-						} else { // first one in loop // and all new ones which don't start a new group
+						if (prevIndex !== this.index) { // first in loop // start new group 
+							var closeDiv = '</div>';
+							console.log(index);
+							if (index == 0) {
+								closeDiv = '';
+							} 
+							extraSelectors += closeDiv + '<div class="parent"><div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
+						} else { // all which don't start a new group
 							extraSelectors += '<div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
+							// extraSelectors += '<div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
 						}
 						prevIndex = this.index;
 					})
-					extraSelectors += '</div><div class="parent"><div class="uneditable">'+lastElement+'</div></div>';
+					// extraSelectors += '</div><div class="parent"><div class="uneditable">'+lastElement+'</div></div>';
+					extraSelectors += '</div>';
 				}
 			} 
   		}
@@ -326,6 +348,8 @@ $(document)
 			.find("div.editable").removeClass('added')
 			.end() 
 			.find("div.editable").eq(potentialSelectors.length-1).parent().children().addClass('added'); // middleElement(s)
+		var countText = getCountText(path);
+		root.find(".secondary").html(countText);
 		copyPath();
 	})
 	// user closes the lightbox

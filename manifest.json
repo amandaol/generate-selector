@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Generate the Optimum jQuery Selector",
+  "name": "Selectify",
   "short_name": "jQuery Selector Generator",
   "description": "This extension generates the optimum jquery selector on alt+click of the desired element.",
   "version": "1.1",
