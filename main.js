@@ -1,5 +1,5 @@
 // append styles to head
-var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; } .optimizer-container section button {padding: 5px 10px; color: #080808; border: 1px solid #080808; background-color: #F4F1F2; font-size: 14px; } .optimizer-container section button:hover {text-shadow:none; } .extraSelectors {display: none; margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } .extraSelectors .uneditable {background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 99%; display: inline-block; padding-right: 30px; margin-right: 10px; } .extraSelectors .uneditable.root {display: block; margin-right: 0px; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .added .editable {background-color: #AE849F; } .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable:last-child:hover {background-color: #E8C7EA; }</style>';
+var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; display: none; } .optimizer-container.show section {margin-top: 20px; display: block; } .optimizer-container section button {padding: 5px 10px; color: #080808; border: 1px solid #080808; background-color: #F4F1F2; font-size: 14px; } .optimizer-container section button:hover {text-shadow:none; } .extraSelectors {/*display: none;*/ margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } .extraSelectors .uneditable {background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 93%; display: inline-block; padding-right: 30px; margin-right: 10px; } .extraSelectors .uneditable.root {display: block; margin-right: 0px; background-position: 99%; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .added .editable {background-color: #AE849F; } .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable.added:hover {background-color: #E8C7EA; }</style>';
 $("head").append(oneLineCSS);
 
 // overlay-initial: not visible but which will, when display:block, block all user events not associated with this script
@@ -14,14 +14,18 @@ $("body").append(markup);
 var path, selector, middleElement, lastElement;
 var potentialSelectors = []; // all available selectors, grouped by level // excludes root and element clicked-on
 var chosenSelectors = []; // selectors chosen from the potentialSelectors array
-var numberOfDOMLevels = ''; // if there is more than 1 DOM level between the element clicked and the root, this is the total number (including the element clicked);
-var root = $("#overlay-primary");
+var numberOfDOMLevels = ''; // if there is more than 1 DOM level between the element clicked and the root, this is the total number (including the element clicked)
+var root = $("#overlay-primary"); // root element which all other elements are inside of
 
 // load middleElement selector(s) into chosenSelectors array because they are default values
 var loadME = function() {
 	// find elements within potentialSelectors with one of the last two indexes // add to chosenSelectors
-	var last = potentialSelectors[potentialSelectors.length-1].index;
-	var almostLast = last - 1;
+	var last = '';
+	var almostLast = '';
+	if (potentialSelectors[potentialSelectors.length-1] !== undefined) {
+		last = potentialSelectors[potentialSelectors.length-1].index;
+		almostLast = last - 1;
+	}
 	for(var i=0; i < potentialSelectors.length; i++){
 		if (potentialSelectors[i].index == last || potentialSelectors[i].index == almostLast) {
 			var newEntry = {};
@@ -114,6 +118,7 @@ var main = function(e) {
   	// contstruct path 
 	var extraSelectors = ''; // contains markup for extra selectors
 	var disabled = "disabled";
+  	root.find(".optimizer-container").removeClass('show');
   	if (id.length > 0) { // if ID exists, start with that
   		var idName = id.attr("id");
   		selector = '$("#'+idName+'")';
@@ -127,6 +132,8 @@ var main = function(e) {
 				path = selector + '.find("'+middleElement+ ' ' +lastElement+'")';
 				// 4+ elemenets  // so, if there is more than one DOM level between the selected element and the root (or ID), make a list for user to select from
 				if (!$(element).parent().parent().is(id)) { 
+					root.find(".optimizer-container").addClass('show');
+
 					// set buttons to be clickable
 					disabled = "";
 					extraSelectors += '<div class="parent"><div class="uneditable root">#' + idName + '</div></div>';
@@ -139,14 +146,12 @@ var main = function(e) {
 					parents.each(function(index) {
 						parentIndex++; 
 						var classes = $(this).attr("class");
-						console.log(classes);
 						// if no class(es), add tag to potentialSelectors array, along with its DOM level
 						if (classes === undefined || $(this).attr("class").trim().length === 0) { 
 							var element = {};
 							element.index = parentIndex;
 							element.class = (this.nodeName).toLowerCase();
 							potentialSelectors.push(element);
-							console.log(element);
 						} else { // if class(es), add class(es)
 							var classes = "." + (this.className).trim().replace(/ +/g, " .");
 							if (classes.indexOf(".", 1) > 0) { // if classes contains more than one "."
@@ -158,7 +163,6 @@ var main = function(e) {
 										element.index = parentIndex;
 										element.class = "." + elementSplit[index].trim();
 										potentialSelectors.push(element);
-										console.log(element);
 									}
 								})
 							} else { // only one class, add to potentialSelectors array
@@ -166,26 +170,27 @@ var main = function(e) {
 								element.index = parentIndex;
 								element.class = "." + (this.className).trim();
 								potentialSelectors.push(element);
-								console.log(element);
 							}
 						}
 					})
 
 					// if last element has class(es), add tag into appropriate spot in array
 					var lastInParents = parents.slice(-1);
-					if (lastInParents[0].className) {
-						var element = {};
-						element.index = parents.length;
-						element.class = lastInParents[0].nodeName.toLowerCase();
+					if (lastInParents[0] !== undefined) {
+						if (lastInParents[0].className !== undefined && lastInParents[0].className) {
+							var element = {};
+							element.index = parents.length;
+							element.class = lastInParents[0].nodeName.toLowerCase();
 
-						// get index of first object which has an internal index of parents.length (i.e. it's the last group or DOM level)	 
-						var indexOfFirst = $.map(potentialSelectors, function(obj, index) {
-						    if(obj.index == parents.length) {
-						        return index;
-						    }
-						})
-						// insert tag into this spot						
-						potentialSelectors.splice(indexOfFirst[0], 0, element);
+							// get index of first object which has an internal index of parents.length (i.e. it's the last group or DOM level)	 
+							var indexOfFirst = $.map(potentialSelectors, function(obj, index) {
+							    if(obj.index == parents.length) {
+							        return index;
+							    }
+							})
+							// insert tag into this spot						
+							potentialSelectors.splice(indexOfFirst[0], 0, element);
+						}
 					}
 
 					var prevIndex = 0; // max index in the array
@@ -214,6 +219,8 @@ var main = function(e) {
 						prevIndex = this.index;
 					})
 					extraSelectors += '</div>';
+
+					
 				}
 			} 
   		}
@@ -236,9 +243,8 @@ var main = function(e) {
 
   	// build/display message
   	var message = '<textarea class="js-copytextarea">'+path+'</textarea><p class="secondary" tabindex="0">'+countText+'</p>';
-  	message += '<section><button class="edit" '+disabled+' title="You can edit the selector path only when there are more selectors to choose from than what\'s already in the selector path.">Edit Selector Path</button> <button class="revert" '+disabled+' title="This button is available when the Edit button is available.">Revert</button>';
+  	message += '<section><button class="revert" '+disabled+' title="This button is available when the Edit button is available.">Clear Changes</button>';
   	message += '<div class="extraSelectors">'+extraSelectors+'</div></section>';
-  	// message += '<img src="chrome-extension://ilhdahgielkcaoodgjapamnkldjcbpla/lock.png">';
   	root
   		.show()
   		.find(".content").html(message);
@@ -341,12 +347,13 @@ $(document)
 		chosenSelectors.splice(0,arrayCount);
 		// load default selectors into chosenSelectors because they're default
 		loadME();
-		// revert selectors to default classes
+		// revert visible selectors to default classes
 		root
 			.find("div.editable").removeClass('added')
 			.end() 
 			.find("div.parent").eq(numberOfDOMLevels).children().addClass('added') // last DOM level
 		root.find("div.parent").eq(numberOfDOMLevels-1).children().addClass('added'); // second to last DOM level
+		// update count and copy path
 		var countText = getCountText(path);
 		root.find(".secondary").html(countText);
 		copyPath();
