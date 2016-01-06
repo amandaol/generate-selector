@@ -14,6 +14,7 @@ $("body").append(markup);
 var path, selector, middleElement, lastElement;
 var potentialSelectors = []; // all available selectors, grouped by level // excludes root and element clicked-on
 var chosenSelectors = []; // selectors chosen from the potentialSelectors array
+var numberOfDOMLevels = ''; // if there is more than 1 DOM level between the element clicked and the root, this is the total number (including the element clicked);
 var root = $("#overlay-primary");
 
 // load middleElement selector(s) into chosenSelectors array because they are default values
@@ -132,7 +133,7 @@ var main = function(e) {
 					var parentIndex = 0
 					// get all parents // include self
 					var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack();
-					// var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack("[data-selected="+elementMarker+"]");
+					numberOfDOMLevels = parents.length;
 
 					// from parents, construct list of all classes (or tags), per DOM level, in order
 					parents.each(function(index) {
@@ -308,24 +309,13 @@ $(document)
         // stringify, i.e. construct the string which will display as part of the path
 		var prevIndex = "";
 
-		// What is this about?!?!?! I think this is no longer right. 
-		// if chosenSelectors contains the middleElement, set prevIndex to 1
-		// for (var i=0; i < chosenSelectors.length; i++) {
-		// 	if (chosenSelectors[i].index == 1) {
-		// 		prevIndex = 1;
-		// 	}
-		// }
-		// console.log("prevIndex");
-		// console.log(prevIndex);
-		
-		// console.log(chosenSelectors);
-
 		$(chosenSelectors).each(function(index) {
 			if (prevIndex == this.index) { // same group, no space
 				chosenSelectorsOutput += this.content;
 			} else { // new group
+				// I honestly don't know why the below works, but 1) it does and 2) I knew at one time
 				// if it's the highest data-index, i.e. it's visually furthest on the left, remove the space
-				var maxIndex = chosenSelectors[0].index; // max index in the array
+				var maxIndex = chosenSelectors[0].index; // lowest index in the array, closest to root element
 				if (this.index == maxIndex) {
 					chosenSelectorsOutput += this.content;
 				} else {
@@ -335,13 +325,6 @@ $(document)
 			prevIndex = this.index;
 		})
 
-		// add space before lastElement, if needed
-		var space = "";
-		if (chosenSelectorsOutput.length > 0) {
-			space = " ";
-		}
-
-		// var newPath = selector + '.find("' +chosenSelectorsOutput + space + lastElement+ '")';
 		var newPath = selector + '.find("' +chosenSelectorsOutput + '")';
 		// display new path
 		$(".js-copytextarea").val(newPath);
@@ -356,13 +339,14 @@ $(document)
 		// empty chosenSelectors array
 		var arrayCount = chosenSelectors.length;
 		chosenSelectors.splice(0,arrayCount);
-		// load middleElement into chosenSelectors because it's a default
+		// load default selectors into chosenSelectors because they're default
 		loadME();
 		// revert selectors to default classes
 		root
 			.find("div.editable").removeClass('added')
 			.end() 
-			.find("div.editable").eq(potentialSelectors.length-1).parent().children().addClass('added'); // middleElement(s)
+			.find("div.parent").eq(numberOfDOMLevels).children().addClass('added') // last DOM level
+		root.find("div.parent").eq(numberOfDOMLevels-1).children().addClass('added'); // second to last DOM level
 		var countText = getCountText(path);
 		root.find(".secondary").html(countText);
 		copyPath();
