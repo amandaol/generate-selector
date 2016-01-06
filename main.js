@@ -1,5 +1,5 @@
 // append styles to head
-var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; } .optimizer-container section button {padding: 5px 10px; color: #080808; border: 1px solid #080808; background-color: #F4F1F2; font-size: 14px; } .optimizer-container section button:hover {text-shadow:none; } .extraSelectors {display: none; margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } .extraSelectors .uneditable {/*background-color: #5E6F56;*/ background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 99%; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .added .editable {background-color: #AE849F; } .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable:last-child:hover {background-color: #E8C7EA; }</style>';
+var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; } .optimizer-container section button {padding: 5px 10px; color: #080808; border: 1px solid #080808; background-color: #F4F1F2; font-size: 14px; } .optimizer-container section button:hover {text-shadow:none; } .extraSelectors {display: none; margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } .extraSelectors .uneditable {background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 99%; display: inline-block; padding-right: 30px; margin-right: 10px; } .extraSelectors .uneditable.root {display: block; margin-right: 0px; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .added .editable {background-color: #AE849F; } .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable:last-child:hover {background-color: #E8C7EA; }</style>';
 $("head").append(oneLineCSS);
 
 // overlay-initial: not visible but which will, when display:block, block all user events not associated with this script
@@ -18,9 +18,11 @@ var root = $("#overlay-primary");
 
 // load middleElement selector(s) into chosenSelectors array because they are default values
 var loadME = function() {
-	// find elements within potentialSelectors with an index of 1 // add to chosenSelectors
+	// find elements within potentialSelectors with one of the last two indexes // add to chosenSelectors
+	var last = potentialSelectors[potentialSelectors.length-1].index;
+	var almostLast = last - 1;
 	for(var i=0; i < potentialSelectors.length; i++){
-		if (potentialSelectors[i].index == 1) {
+		if (potentialSelectors[i].index == last || potentialSelectors[i].index == almostLast) {
 			var newEntry = {};
 			newEntry.index = potentialSelectors[i].index;
 			newEntry.content = potentialSelectors[i].class;
@@ -126,25 +128,15 @@ var main = function(e) {
 				if (!$(element).parent().parent().is(id)) { 
 					// set buttons to be clickable
 					disabled = "";
-					extraSelectors += '<div class="parent"><div class="uneditable">#' + idName + '</div></div>';
+					extraSelectors += '<div class="parent"><div class="uneditable root">#' + idName + '</div></div>';
 					var parentIndex = 0
-					// populate potentialSelectors with clicked element
-						// cycle through - could have multiple classes
-						// mark tag specially - it can not be edited
-						// make sure index is 0 - this is a special DOM level 
-					// get all parents
+					// get all parents // include self
 					var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack();
 					// var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack("[data-selected="+elementMarker+"]");
-					// add lastElement to parents array... so it's not really just parents now!
-					// parents.splice(0, 0, $(lastElement).eq(0));
-					console.log("parents updated, a different way");
-					console.log(parents);
 
 					// from parents, construct list of all classes (or tags), per DOM level, in order
 					parents.each(function(index) {
-						// if (index != (parents.length -1)) {
-							parentIndex++; 
-						// }
+						parentIndex++; 
 						var classes = $(this).attr("class");
 						console.log(classes);
 						// if no class(es), add tag to potentialSelectors array, along with its DOM level
@@ -178,31 +170,48 @@ var main = function(e) {
 						}
 					})
 
-					// potentialSelectors.reverse(); // visually, we want the highest number index displayed first
-					// var prevIndex = potentialSelectors[0].index; // max index in the array
-					// var prevIndex = parents.length; // max index in the array
+					// if last element has class(es), add tag into appropriate spot in array
+					var lastInParents = parents.slice(-1);
+					if (lastInParents[0].className) {
+						var element = {};
+						element.index = parents.length;
+						element.class = lastInParents[0].nodeName.toLowerCase();
+
+						// get index of first object which has an internal index of parents.length (i.e. it's the last group or DOM level)	 
+						var indexOfFirst = $.map(potentialSelectors, function(obj, index) {
+						    if(obj.index == parents.length) {
+						        return index;
+						    }
+						})
+						// insert tag into this spot						
+						potentialSelectors.splice(indexOfFirst[0], 0, element);
+					}
+
 					var prevIndex = 0; // max index in the array
-					// extraSelectors += '<div class="parent">';
 					// build markup // populate extraSelectors with all classes/tags from potentialSelectors
+					var first = true; // first object in the last set of objects
 					$(potentialSelectors).each(function(index) {
 						var last = ""; // class needed only for the last group of elements
-						if ((this.index) == parents.length) { 
+						if (this.index == (parents.length) || this.index == (parents.length - 1)) { 
 							last = "added";
 						}
-						if (prevIndex !== this.index) { // first in loop // start new group 
+						// add "uneditable" class to tag // only occurs once
+						var primaryClass = 'editable';
+						if (this.index == (parents.length) && first) { // last set of objects in array, first object inside // marked uneditable
+							first = false;
+							primaryClass = 'uneditable';
+						}
+						if (prevIndex !== this.index) { // start new group 
 							var closeDiv = '</div>';
-							console.log(index);
 							if (index == 0) {
 								closeDiv = '';
 							} 
-							extraSelectors += closeDiv + '<div class="parent"><div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
-						} else { // all which don't start a new group
-							extraSelectors += '<div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
-							// extraSelectors += '<div class="editable '+last+'" data-index='+ this.index +'>'+this.class+'</div>';
+							extraSelectors += closeDiv + '<div class="parent"><div class="'+primaryClass + ' ' +last+'" data-index='+ this.index +'>'+this.class+'</div>';
+						} else { // continue with previous group
+							extraSelectors += '<div class="'+primaryClass + ' ' +last+'" data-index='+ this.index +'>'+this.class+'</div>';
 						}
 						prevIndex = this.index;
 					})
-					// extraSelectors += '</div><div class="parent"><div class="uneditable">'+lastElement+'</div></div>';
 					extraSelectors += '</div>';
 				}
 			} 
@@ -239,7 +248,7 @@ var main = function(e) {
 
   	copyPath(true);
 
-  	// add middle selectors to path, because they are default value(s)
+  	// add default selectors to "potentialSelectors" array, because they are default 
   	loadME();
 }
 
@@ -293,18 +302,23 @@ $(document)
 
         // sort elements in correct order // this is based off their data-index
         chosenSelectors.sort(function(a,b) {
-            return parseFloat(b.index) - parseFloat(a.index);
+            return parseFloat(a.index) - parseFloat(b.index);
         });
 
         // stringify, i.e. construct the string which will display as part of the path
 		var prevIndex = "";
 
+		// What is this about?!?!?! I think this is no longer right. 
 		// if chosenSelectors contains the middleElement, set prevIndex to 1
-		for (var i=0; i < chosenSelectors.length; i++) {
-			if (chosenSelectors[i].index == 1) {
-				prevIndex = 1;
-			}
-		}
+		// for (var i=0; i < chosenSelectors.length; i++) {
+		// 	if (chosenSelectors[i].index == 1) {
+		// 		prevIndex = 1;
+		// 	}
+		// }
+		// console.log("prevIndex");
+		// console.log(prevIndex);
+		
+		// console.log(chosenSelectors);
 
 		$(chosenSelectors).each(function(index) {
 			if (prevIndex == this.index) { // same group, no space
@@ -327,7 +341,8 @@ $(document)
 			space = " ";
 		}
 
-		var newPath = selector + '.find("' +chosenSelectorsOutput + space + lastElement+ '")';
+		// var newPath = selector + '.find("' +chosenSelectorsOutput + space + lastElement+ '")';
+		var newPath = selector + '.find("' +chosenSelectorsOutput + '")';
 		// display new path
 		$(".js-copytextarea").val(newPath);
 		// update count and copy path
