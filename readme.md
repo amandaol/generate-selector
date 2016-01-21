@@ -24,4 +24,5 @@ Icon made by [Freepik](http://www.flaticon.com) and licensed under [CC BY 3.0](h
 
 ## Change log
 v.1.1 - Generate the path on alt+click. Auto copies to clipboard.
-v.1.2 - Added the ability to edit the selector path. This may be needed in cases where the HTML is unusually deep or complex, or simply poorly built.
+
+v.2.1 - Added the ability to edit the selector path. This may be needed in cases where the HTML is unusually deep or complex, or simply poorly built.
