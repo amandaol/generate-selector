@@ -1,8 +1,8 @@
 # Selectify
 
-## What's Going On
+## Overview
 
-On alt+click of the desired element, generate the optimum jquery selector. The logic is listed below. Should you need to, you can easily edit the generated jquery selector by clicking on a generated chart of all selector possibilities.
+On alt+click of the desired element, this Chrome extension generates the optimum jquery selector (logic listed below). Should you need, you can easily edit the generated jquery selector by clicking on a generated chart of all selector possibilities.
 
 1. If the desired element has an ID, or if a parent has an ID, that (closest) ID becomes the first part of the selector. 
 2. Directly after the ID, ".find" is used to chain the rest of the selector. 
@@ -13,6 +13,10 @@ On alt+click of the desired element, generate the optimum jquery selector. The l
 While there is more logic, at a high level this is all that happens. Feel free to step through main.js to see more.
 
 For more reading: [https://learn.jquery.com/performance/optimize-selectors/](https://learn.jquery.com/performance/optimize-selectors/)
+
+##Installation
+
+Install from the [Chrome web store](https://chrome.google.com/webstore/search/Optimum%20jQuery%20Selector).
 
 ## How To Use It
 1.  Hit the alt key.
