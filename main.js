@@ -1,11 +1,12 @@
 // append styles to head
-var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#overlay-initial {display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -o-linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .85)), to(rgba(255, 255, 255, .85))); background-image: linear-gradient(rgba(255, 255, 255, .85), rgba(255, 255, 255, .85)); } #overlay-primary.active {display: block; } .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; overflow: hidden; opacity: 0; transition: opacity .5s; border: 2px solid #999; background-color: #eee; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; } .optimizer-container.stat-show {opacity: 1; } .optimizer-container .content {font-size: 14px; } #optimizer-close {position: absolute; right: 6px; top: 5px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; } .optimizer-container textarea {font-weight: bold; background-color: transparent; border: 0px; width: 100%; height: 100%; resize: none; outline: none; font-size: 14px; padding: 0px; padding-top: 10px; line-height: 1; overflow: hidden; box-shadow: none; } .optimizer-container p.secondary {margin-top: 0px; margin-bottom: 10px; outline: 0; } .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } .optimizer-container p.secondary span.once {color: green; } .optimizer-container p.msg {color: #666; font-size: 12px; } .optimizer-container section {margin-top: 20px; display: none; } .optimizer-container.show section {margin-top: 20px; display: block; } .optimizer-container section button {padding: 5px 10px; color: #080808; border: 1px solid #080808; background-color: #F4F1F2; font-size: 14px; } .optimizer-container section button:hover {text-shadow:none; } .extraSelectors {/*display: none;*/ margin-top: 10px; padding-top: 8px; } .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } .extraSelectors .uneditable {background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 93%; display: inline-block; padding-right: 30px; margin-right: 10px; } .extraSelectors .uneditable.root {display: block; margin-right: 0px; background-position: 99%; } .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } .extraSelectors .editable:last-child {background-color: #E8C7EA; } .extraSelectors .added .editable {background-color: #AE849F; } .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } .extraSelectors .editable:hover {background-color: #AE849F; } .extraSelectors .editable.added:hover {background-color: #E8C7EA; }</style>';
+var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#CWSE-overlay-initial {display: none; background:rgba(0,0,0,0.1); position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #CWSE-overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; color: #080808; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background-image: -o-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.5)), to(rgba(0,0,0,0.5))); background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); } #CWSE-overlay-primary.active {display: block; } #CWSE-overlay-primary .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; box-sizing:border-box; overflow: hidden; opacity: 0; transition: opacity .5s; border: 0px solid #999; background-color: #f4f1f2; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; /*	background-image: url("chrome-extension://ppgnggijakbehceanbhnehaanljlindl/icon16.png"); background-repeat: no-repeat;*/ } #CWSE-overlay-primary .optimizer-container.stat-show {opacity: 1; } #CWSE-overlay-primary .optimizer-container .content {font-size: 14px; background-repeat: no-repeat; } #CWSE-overlay-primary #optimizer-close {position: absolute; right: 10px; top: 10px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; font-weight: bold; line-height: 1; } #CWSE-overlay-primary .viewPath {position: relative; margin-bottom: 10px; } #CWSE-overlay-primary .js-copytextarea {position: absolute; top: 0; left: 0; z-index: 1; background-color: transparent; border: 0px; outline: none; resize:none; } #CWSE-overlay-primary .textAreaDisplayed {position: relative; z-index: 2; font-weight: bold; font-size: 14px; padding: 0px; padding-top: 10px; margin-bottom: 10px; } #CWSE-overlay-primary .optimizer-container p.secondary {margin-top: 0; margin-bottom: 0px; padding: 0; outline: none; line-height: 1; } #CWSE-overlay-primary .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } #CWSE-overlay-primary .optimizer-container p.secondary span.once {color: #5E6F56; } #CWSE-overlay-primary .optimizer-container p.msg {color: #5e6f56; font-size: 12px; margin-top: 0px; } #CWSE-overlay-primary .optimizer-container section.editPath {padding-top: 20px; border-top: 1px dashed gray; /*border-top: 1px dashed #5E6F56;*/ display: none; } #CWSE-overlay-primary .optimizer-container section.editPath h1 {display: inline-block; float: left; padding: 0; font-size: 24px; font-weight: normal; } #CWSE-overlay-primary .optimizer-container.show section.editPath {display: block; } #CWSE-overlay-primary .optimizer-container section.editPath button {float: right; padding: 5px 10px; color: #080808; border: 1px solid #080808; border-radius: 6px; background-color: #F4F1F2; font-size: 14px; cursor: pointer; margin: 0; font-weight: normal; } #CWSE-overlay-primary .optimizer-container section.editPath button:hover {text-shadow:none; } #CWSE-overlay-primary .extraSelectors {clear: both; padding-top: 8px; } #CWSE-overlay-primary .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } #CWSE-overlay-primary .extraSelectors .uneditable {background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 93%; display: inline-block; padding-right: 30px; margin-right: 10px; } #CWSE-overlay-primary .extraSelectors .uneditable.root {display: block; margin-right: 0px; background-position: 99%; } #CWSE-overlay-primary .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } #CWSE-overlay-primary .extraSelectors .editable:last-child {background-color: #E8C7EA; } #CWSE-overlay-primary .extraSelectors .added .editable {background-color: #AE849F; } #CWSE-overlay-primary .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } #CWSE-overlay-primary .extraSelectors .editable:hover {background-color: #AE849F; } #CWSE-overlay-primary .extraSelectors .editable.added:hover {background-color: #E8C7EA; }</style>';
+// var cssContent = '';
 $("head").append(oneLineCSS);
 
-// overlay-initial: not visible but which will, when display:block, block all user events not associated with this script
-// overlay-primary: visible to the user
-var markup = $('<div id="overlay-initial"></div>\
-	<div id="overlay-primary"><div class="optimizer-container">\
+// CWSE-overlay-initialal: not visible but which will, when display:block, block all user events not associated with this script
+// CWSE-overlay-primary: visible to the user
+var markup = $('<div id="CWSE-overlay-initial"></div>\
+	<div id="CWSE-overlay-primary"><div class="optimizer-container">\
 	<i id="optimizer-close">X</i>\
 	<div class="content"></div>\
 	</div></div>');
@@ -15,7 +16,7 @@ var path, selector, middleElement, lastElement;
 var potentialSelectors = []; // all available selectors, grouped by level // excludes root and element clicked-on
 var chosenSelectors = []; // selectors chosen from the potentialSelectors array
 var numberOfDOMLevels = ''; // if there is more than 1 DOM level between the element clicked and the root, this is the total number (including the element clicked)
-var root = $("#overlay-primary"); // root element which all other elements are inside of
+var root = $("#CWSE-overlay-primary"); // root element which all other elements are inside of
 
 // load middleElement selector(s) into chosenSelectors array because they are default values
 var loadME = function() {
@@ -52,24 +53,27 @@ var copyPath = function(firstTime) {
 	var successful = document.execCommand('copy'); // copy path to clipboard
 	var msg = successful ? 'Path copied to your clipboard.' : 'Unfortunately, path was not copied to your clipboard. Please try again.';
 	if (firstTime) {
-		$("#overlay-primary").find(".optimizer-container .secondary").after('<p class="msg">'+msg+'</p>');
+		root.find(".optimizer-container .secondary").after('<p class="msg">'+msg+'</p>');
 	} else {
-		$("#overlay-primary")
+		root
 			.find(".optimizer-container .msg")
 				.fadeOut('100').fadeIn('100')
 			.siblings('.secondary')
 				.fadeOut('100').fadeIn('100');
 	}
 	copyTextarea.selectionStart = copyTextarea.selectionEnd = -1; // deselect path // un-highlights text in input field
-	$("#overlay-primary").find("p.secondary").focus(); // pulls cursor out of textarea
+	root.find("p.secondary").focus(); // pulls cursor out of textarea
+	// remove text from textarea and move to div that overlays the textarea
+	root.find('.js-copytextarea').val("");
+	root.find('.textAreaDisplayed').text(path); //applies the first time only
 }
 
 // open overlay, build content, display content
 var main = function(e) {
   	$(document).off("click", main); // allows user to immediately close the overlay // otherwise the main function would fire first 
-    $("#overlay-initial").hide(); // remove invisible overlay so that the "element" variable actualy gets the right element 
+    $("#CWSE-overlay-initial").hide(); // remove invisible overlay so that the "element" variable actualy gets the right element 
 
-	// get mouse position, so can get element user clicked on located directly beneath the overlay-initial
+	// get mouse position, so can get element user clicked on located directly beneath the CWSE-overlay-initialal
 	var x = e.clientX;
 	var y = e.clientY;
     var element = document.elementFromPoint(x, y);
@@ -165,7 +169,7 @@ var main = function(e) {
 										potentialSelectors.push(element);
 									}
 								})
-							} else { // only one class, add to potentialSelectors array
+							} else { // if only one class, add to potentialSelectors array
 								var element = {};
 								element.index = parentIndex;
 								element.class = "." + (this.className).trim();
@@ -219,8 +223,6 @@ var main = function(e) {
 						prevIndex = this.index;
 					})
 					extraSelectors += '</div>';
-
-					
 				}
 			} 
   		}
@@ -242,8 +244,11 @@ var main = function(e) {
   	var countText = getCountText(path);
 
   	// build/display message
-  	var message = '<textarea class="js-copytextarea">'+path+'</textarea><p class="secondary" tabindex="0">'+countText+'</p>';
-  	message += '<section><button class="revert" '+disabled+' title="This button is available when the Edit button is available.">Clear Changes</button>';
+  	var message = '<section class="viewPath"><textarea class="js-copytextarea">'+path+'</textarea>'; // hidden
+  	message += '<div class="textAreaDisplayed">path will go here path will go here</div>'; // displayed 
+  	message += '<p class="secondary" tabindex="0">'+countText+'</p></section>';
+  	message += '<section class="editPath"><h1>Edit Path</h1>';
+  	message += '<button class="revert" '+disabled+' title="This button is available when the Edit button is available.">Clear Changes</button>';
   	message += '<div class="extraSelectors">'+extraSelectors+'</div></section>';
   	root
   		.show()
@@ -272,10 +277,10 @@ var closeOverlay = function() {
 $(document)
 	.on("keydown", function(e) {
 		if (e.altKey) { // shift key pressed
-			$("#overlay-initial").show(); // overlay page so that click does not trigger any event other than the one below
+			$("#CWSE-overlay-initial").show(); // overlay page so that click does not trigger any event other than the one below
 	        $(document).on("click", main); // run main function
 	        setTimeout(function() { // later...
-	        	$("#overlay-initial").hide();
+	        	$("#CWSE-overlay-initial").hide();
 		        $(document).off("click", main); // unattach this function so user can click without triggering the overlay
 	        }, 1000) // gives the user 1 second after alt to click
 	    }
@@ -333,11 +338,12 @@ $(document)
 
 		var newPath = selector + '.find("' +chosenSelectorsOutput + '")';
 		// display new path
-		$(".js-copytextarea").val(newPath);
+		$(".js-copytextarea").val(newPath); // update hidden element // used in copyPath() function
 		// update count and copy path
 		var countText = getCountText(newPath);
 		root.find(".secondary").html(countText);
 		copyPath();
+		$(".textAreaDisplayed").text(newPath); // update visible element for user to see
 	})
 	// revert path to original path
 	.on("click", ".revert", function() {
@@ -359,9 +365,9 @@ $(document)
 		copyPath();
 	})
 	// user closes the lightbox
-	.on("click", "#overlay-primary", function(event) {
+	.on("click", "#CWSE-overlay-primary", function(event) {
 		var target = $(event.target);
-		if (target.is($("#overlay-primary")) || target.is($("#optimizer-close"))) {
+		if (target.is($("#CWSE-overlay-primary")) || target.is($("#optimizer-close"))) {
 			closeOverlay();
 		}
 	}) 
