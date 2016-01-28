@@ -1,6 +1,5 @@
 // append styles to head
 var oneLineCSS = '<style id="pathOptimizer-styles" type="text/css">#CWSE-overlay-initial {display: none; background:rgba(0,0,0,0.1); position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; } #CWSE-overlay-primary {display: none; font-family: arial, sans-serif; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 10000; color: #080808; cursor: pointer; overflow-y: auto; background-image: -moz-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background-image: -o-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.5)), to(rgba(0,0,0,0.5))); background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); } #CWSE-overlay-primary.active {display: block; } #CWSE-overlay-primary .optimizer-container {position: absolute; width: 600px; left: 50%; margin-left: -300px; top: 50px; box-sizing:border-box; overflow: hidden; opacity: 0; transition: opacity .5s; border: 0px solid #999; background-color: #f4f1f2; border-radius: 6px; padding: 25px; cursor: auto; margin-bottom: 100px; /*	background-image: url("chrome-extension://ppgnggijakbehceanbhnehaanljlindl/icon16.png"); background-repeat: no-repeat;*/ } #CWSE-overlay-primary .optimizer-container.stat-show {opacity: 1; } #CWSE-overlay-primary .optimizer-container .content {font-size: 14px; background-repeat: no-repeat; } #CWSE-overlay-primary #optimizer-close {position: absolute; right: 10px; top: 10px; color: #999; cursor: pointer; font-size: 20px; padding: 4px; z-index: 1; font-style: normal; font-weight: bold; line-height: 1; } #CWSE-overlay-primary .viewPath {position: relative; margin-bottom: 10px; } #CWSE-overlay-primary .js-copytextarea {position: absolute; top: 0; left: 0; z-index: 1; background-color: transparent; border: 0px; outline: none; resize:none; } #CWSE-overlay-primary .textAreaDisplayed {position: relative; z-index: 2; font-weight: bold; font-size: 14px; padding: 0px; padding-top: 10px; margin-bottom: 10px; } #CWSE-overlay-primary .optimizer-container p.secondary {margin-top: 0; margin-bottom: 0px; padding: 0; outline: none; line-height: 1; } #CWSE-overlay-primary .optimizer-container p.secondary span {font-weight: bold; color: red; font-size: 14px; } #CWSE-overlay-primary .optimizer-container p.secondary span.once {color: #5E6F56; } #CWSE-overlay-primary .optimizer-container p.msg {color: #5e6f56; font-size: 12px; margin-top: 0px; } #CWSE-overlay-primary .optimizer-container section.editPath {padding-top: 20px; border-top: 1px dashed gray; /*border-top: 1px dashed #5E6F56;*/ display: none; } #CWSE-overlay-primary .optimizer-container section.editPath h1 {display: inline-block; float: left; padding: 0; font-size: 24px; font-weight: normal; } #CWSE-overlay-primary .optimizer-container.show section.editPath {display: block; } #CWSE-overlay-primary .optimizer-container section.editPath button {float: right; padding: 5px 10px; color: #080808; border: 1px solid #080808; border-radius: 6px; background-color: #F4F1F2; font-size: 14px; cursor: pointer; margin: 0; font-weight: normal; } #CWSE-overlay-primary .optimizer-container section.editPath button:hover {text-shadow:none; } #CWSE-overlay-primary .extraSelectors {clear: both; padding-top: 8px; } #CWSE-overlay-primary .extraSelectors div {/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px; border-radius: 10px; /*margin-bottom: 10px;*/ } #CWSE-overlay-primary .extraSelectors .uneditable {background-color: #AE849F; color: #F4F1F2; background-repeat: no-repeat; background-position: 93%; display: inline-block; padding-right: 30px; margin-right: 10px; } #CWSE-overlay-primary .extraSelectors .uneditable.root {display: block; margin-right: 0px; background-position: 99%; } #CWSE-overlay-primary .extraSelectors .editable {background-color: #E8C7EA; cursor: pointer; display: inline-block; margin-right: 10px; transition: background-color 0.5s ease; } #CWSE-overlay-primary .extraSelectors .editable:last-child {background-color: #E8C7EA; } #CWSE-overlay-primary .extraSelectors .added .editable {background-color: #AE849F; } #CWSE-overlay-primary .extraSelectors .added.editable {background-color: #AE849F; color: #F4F1F2; } #CWSE-overlay-primary .extraSelectors .editable:hover {background-color: #AE849F; } #CWSE-overlay-primary .extraSelectors .editable.added:hover {background-color: #E8C7EA; }</style>';
-// var cssContent = '';
 $("head").append(oneLineCSS);
 
 // CWSE-overlay-initialal: not visible but which will, when display:block, block all user events not associated with this script
@@ -122,10 +121,101 @@ var main = function(e) {
   	// contstruct path 
 	var extraSelectors = ''; // contains markup for extra selectors
 	var disabled = "disabled";
+  	var endPoint = ""; // end element in selector path // typically, this is the ID
   	root.find(".optimizer-container").removeClass('show');
   	if (id.length > 0) { // if ID exists, start with that
-  		var idName = id.attr("id");
+  		var idName = endPoint = id.attr("id"); // setting both variables equal to this value
   		selector = '$("#'+idName+'")';
+
+  		var buildElementChart = function() {
+  			root.find(".optimizer-container").addClass('show');
+  			// set buttons to be clickable
+  			disabled = "";
+  			extraSelectors += '<div class="parent"><div class="uneditable root">#' + idName + '</div></div>';
+  			var parentIndex = 0
+  			// get all parents // include self
+  			var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack();
+  			numberOfDOMLevels = parents.length;
+
+  			// from parents, construct list of all classes (or tags), per DOM level, in order
+  			parents.each(function(index) {
+  				parentIndex++; 
+  				var classes = $(this).attr("class");
+  				// if no class(es), add tag to potentialSelectors array, along with its DOM level
+  				if (classes === undefined || $(this).attr("class").trim().length === 0) { 
+  					var element = {};
+  					element.index = parentIndex;
+  					element.class = (this.nodeName).toLowerCase();
+  					potentialSelectors.push(element);
+  				} else { // if class(es), add class(es)
+  					var classes = "." + (this.className).trim().replace(/ +/g, " .");
+  					if (classes.indexOf(".", 1) > 0) { // if classes contains more than one "."
+  						var elementSplit = classes.split("."); // array of all classes
+  						// add each class to potentialSelectors array, along with its DOM level
+  						$(elementSplit).each(function(index){
+  							if (index !== 0) {
+  								var element = {};
+  								element.index = parentIndex;
+  								element.class = "." + elementSplit[index].trim();
+  								potentialSelectors.push(element);
+  							}
+  						})
+  					} else { // if only one class, add to potentialSelectors array
+  						var element = {};
+  						element.index = parentIndex;
+  						element.class = "." + (this.className).trim();
+  						potentialSelectors.push(element);
+  					}
+  				}
+  			})
+
+  			// if last element has class(es), add tag into appropriate spot in array
+  			var lastInParents = parents.slice(-1);
+  			if (lastInParents[0] !== undefined) {
+  				if (lastInParents[0].className !== undefined && lastInParents[0].className) {
+  					var element = {};
+  					element.index = parents.length;
+  					element.class = lastInParents[0].nodeName.toLowerCase();
+
+  					// get index of first object which has an internal index of parents.length (i.e. it's the last group or DOM level)	 
+  					var indexOfFirst = $.map(potentialSelectors, function(obj, index) {
+  					    if(obj.index == parents.length) {
+  					        return index;
+  					    }
+  					})
+  					// insert tag into this spot						
+  					potentialSelectors.splice(indexOfFirst[0], 0, element);
+  				}
+  			}
+
+  			var prevIndex = 0; // max index in the array
+  			// build markup // populate extraSelectors with all classes/tags from potentialSelectors
+  			var first = true; // first object in the last set of objects
+  			$(potentialSelectors).each(function(index) {
+  				var last = ""; // class needed only for the last group of elements
+  				if (this.index == (parents.length) || this.index == (parents.length - 1)) { 
+  					last = "added";
+  				}
+  				// add "uneditable" class to tag // only occurs once
+  				var primaryClass = 'editable';
+  				if (this.index == (parents.length) && first) { // last set of objects in array, first object inside // marked uneditable
+  					first = false;
+  					primaryClass = 'uneditable';
+  				}
+  				if (prevIndex !== this.index) { // start new group 
+  					var closeDiv = '</div>';
+  					if (index == 0) {
+  						closeDiv = '';
+  					} 
+  					extraSelectors += closeDiv + '<div class="parent"><div class="'+primaryClass + ' ' +last+'" data-index='+ this.index +'>'+this.class+'</div>';
+  				} else { // continue with previous group
+  					extraSelectors += '<div class="'+primaryClass + ' ' +last+'" data-index='+ this.index +'>'+this.class+'</div>';
+  				}
+  				prevIndex = this.index;
+  			})
+  			extraSelectors += '</div>';
+  		}
+
   		if ($(element).is(id)) { // if ID is from current element
   			path = selector;
   		} else { // if ID is from a parent, grandparent, etc.
@@ -136,109 +226,29 @@ var main = function(e) {
 				path = selector + '.find("'+middleElement+ ' ' +lastElement+'")';
 				// 4+ elemenets  // so, if there is more than one DOM level between the selected element and the root (or ID), make a list for user to select from
 				if (!$(element).parent().parent().is(id)) { 
-					root.find(".optimizer-container").addClass('show');
-
-					// set buttons to be clickable
-					disabled = "";
-					extraSelectors += '<div class="parent"><div class="uneditable root">#' + idName + '</div></div>';
-					var parentIndex = 0
-					// get all parents // include self
-					var parents = eval(selector + '.find("'+lastElement+'[data-selected=\''+ elementMarker + '\']")').parentsUntil("#" + idName).addBack();
-					numberOfDOMLevels = parents.length;
-
-					// from parents, construct list of all classes (or tags), per DOM level, in order
-					parents.each(function(index) {
-						parentIndex++; 
-						var classes = $(this).attr("class");
-						// if no class(es), add tag to potentialSelectors array, along with its DOM level
-						if (classes === undefined || $(this).attr("class").trim().length === 0) { 
-							var element = {};
-							element.index = parentIndex;
-							element.class = (this.nodeName).toLowerCase();
-							potentialSelectors.push(element);
-						} else { // if class(es), add class(es)
-							var classes = "." + (this.className).trim().replace(/ +/g, " .");
-							if (classes.indexOf(".", 1) > 0) { // if classes contains more than one "."
-								var elementSplit = classes.split("."); // array of all classes
-								// add each class to potentialSelectors array, along with its DOM level
-								$(elementSplit).each(function(index){
-									if (index !== 0) {
-										var element = {};
-										element.index = parentIndex;
-										element.class = "." + elementSplit[index].trim();
-										potentialSelectors.push(element);
-									}
-								})
-							} else { // if only one class, add to potentialSelectors array
-								var element = {};
-								element.index = parentIndex;
-								element.class = "." + (this.className).trim();
-								potentialSelectors.push(element);
-							}
-						}
-					})
-
-					// if last element has class(es), add tag into appropriate spot in array
-					var lastInParents = parents.slice(-1);
-					if (lastInParents[0] !== undefined) {
-						if (lastInParents[0].className !== undefined && lastInParents[0].className) {
-							var element = {};
-							element.index = parents.length;
-							element.class = lastInParents[0].nodeName.toLowerCase();
-
-							// get index of first object which has an internal index of parents.length (i.e. it's the last group or DOM level)	 
-							var indexOfFirst = $.map(potentialSelectors, function(obj, index) {
-							    if(obj.index == parents.length) {
-							        return index;
-							    }
-							})
-							// insert tag into this spot						
-							potentialSelectors.splice(indexOfFirst[0], 0, element);
-						}
-					}
-
-					var prevIndex = 0; // max index in the array
-					// build markup // populate extraSelectors with all classes/tags from potentialSelectors
-					var first = true; // first object in the last set of objects
-					$(potentialSelectors).each(function(index) {
-						var last = ""; // class needed only for the last group of elements
-						if (this.index == (parents.length) || this.index == (parents.length - 1)) { 
-							last = "added";
-						}
-						// add "uneditable" class to tag // only occurs once
-						var primaryClass = 'editable';
-						if (this.index == (parents.length) && first) { // last set of objects in array, first object inside // marked uneditable
-							first = false;
-							primaryClass = 'uneditable';
-						}
-						if (prevIndex !== this.index) { // start new group 
-							var closeDiv = '</div>';
-							if (index == 0) {
-								closeDiv = '';
-							} 
-							extraSelectors += closeDiv + '<div class="parent"><div class="'+primaryClass + ' ' +last+'" data-index='+ this.index +'>'+this.class+'</div>';
-						} else { // continue with previous group
-							extraSelectors += '<div class="'+primaryClass + ' ' +last+'" data-index='+ this.index +'>'+this.class+'</div>';
-						}
-						prevIndex = this.index;
-					})
-					extraSelectors += '</div>';
+					// buildElementChart();
 				}
 			} 
+			buildElementChart();
   		}
   	} else {
   		// get middle element + class
+  		// add "end" element here // set in each if 
   		if ($(element).parent().length > 0) { 
   			middleElement = getMiddleElement(element, true);
 			path = '$("' + middleElement + ' ' + lastElement +'")'; // 2 elements
+      		// endPoint = '$("' + middleElement + ')';
       		// get "grandparent" element + class
       		if ($(element).parent().parent().length > 0) {
       			var firstElement = getMiddleElement($(element).parent(), true);
 				path = '$("' + firstElement + ' ' + middleElement + ' ' + lastElement +'")'; // 3 elements
+				// endPoint = '$("' + firstElement + ')';
       		}
   		} else {
 			path = '$("' + lastElement + '")'; // 1 element
+			// endPoint = '$("' + lastElement + ')';
   		}
+  		// buildElementChart();
   	}
   	
   	var countText = getCountText(path);
@@ -285,8 +295,37 @@ $(document)
 	        }, 1000) // gives the user 1 second after alt to click
 	    }
 	})
-	.on("click", ".edit", function() {
-		$(this).siblings('.extraSelectors').show();
+	// user closes the lightbox
+	.on("click", "#CWSE-overlay-primary", function(event) {
+		var target = $(event.target);
+		if (target.is($("#CWSE-overlay-primary")) || target.is($("#optimizer-close"))) {
+			closeOverlay();
+		}
+	}) 
+	// user closes lightbox by hitting escape key
+	.keyup(function(e) {
+	    if (e.keyCode == 27) { // escape key maps to keycode `27`
+	    	closeOverlay();
+	    }
+	})
+	// revert path to original path
+	.on("click", ".revert", function() {
+		$(".js-copytextarea").val(path);
+		// empty chosenSelectors array
+		var arrayCount = chosenSelectors.length;
+		chosenSelectors.splice(0,arrayCount);
+		// load default selectors into chosenSelectors because they're default
+		loadME();
+		// revert visible selectors to default classes
+		root
+			.find("div.editable").removeClass('added')
+			.end() 
+			.find("div.parent").eq(numberOfDOMLevels).children().addClass('added') // last DOM level
+		root.find("div.parent").eq(numberOfDOMLevels-1).children().addClass('added'); // second to last DOM level
+		// update count and copy path
+		var countText = getCountText(path);
+		root.find(".secondary").html(countText);
+		copyPath();
 	})
 	.on("click", ".editable", function() {
 		// if this element has not been added, add it to the array
@@ -345,35 +384,3 @@ $(document)
 		copyPath();
 		$(".textAreaDisplayed").text(newPath); // update visible element for user to see
 	})
-	// revert path to original path
-	.on("click", ".revert", function() {
-		$(".js-copytextarea").val(path);
-		// empty chosenSelectors array
-		var arrayCount = chosenSelectors.length;
-		chosenSelectors.splice(0,arrayCount);
-		// load default selectors into chosenSelectors because they're default
-		loadME();
-		// revert visible selectors to default classes
-		root
-			.find("div.editable").removeClass('added')
-			.end() 
-			.find("div.parent").eq(numberOfDOMLevels).children().addClass('added') // last DOM level
-		root.find("div.parent").eq(numberOfDOMLevels-1).children().addClass('added'); // second to last DOM level
-		// update count and copy path
-		var countText = getCountText(path);
-		root.find(".secondary").html(countText);
-		copyPath();
-	})
-	// user closes the lightbox
-	.on("click", "#CWSE-overlay-primary", function(event) {
-		var target = $(event.target);
-		if (target.is($("#CWSE-overlay-primary")) || target.is($("#optimizer-close"))) {
-			closeOverlay();
-		}
-	}) 
-	// user closes lightbox by hitting escape key
-	.keyup(function(e) {
-	    if (e.keyCode == 27) { // escape key maps to keycode `27`
-	    	closeOverlay();
-	    }
-	});
