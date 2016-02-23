@@ -1,0 +1,187 @@
+#CWSE-overlay-initial {
+	display: none;
+	background: rgba(0, 0, 0, 0.1);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+}
+#CWSE-overlay-primary {
+	display: none;
+	font-family: arial, sans-serif;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+	color: #080808;
+	cursor: pointer;
+	overflow-y: auto;
+	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+#CWSE-overlay-primary.active {
+	display: block;
+}
+#CWSE-overlay-primary .optimizer-container {
+	position: absolute;
+	width: 600px;
+	left: 50%;
+	margin-left: -300px;
+	top: 50px;
+	box-sizing: border-box;
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity .5s;
+	border: 0px solid #999;
+	background-color: #f4f1f2;
+	border-radius: 6px;
+	padding: 25px;
+	cursor: auto;
+	margin-bottom: 100px; /*	background-image: url("chrome-extension://ppgnggijakbehceanbhnehaanljlindl/icon16.png"); background-repeat: no-repeat;*/
+}
+#CWSE-overlay-primary .optimizer-container.stat-show {
+	opacity: 1;
+}
+#CWSE-overlay-primary .optimizer-container .content {
+	font-size: 14px;
+	background-repeat: no-repeat;
+}
+#CWSE-overlay-primary #optimizer-close {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: #999;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 4px;
+	z-index: 1;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 1;
+}
+#CWSE-overlay-primary .viewPath {
+	position: relative;
+	margin-bottom: 10px;
+}
+#CWSE-overlay-primary .js-copytextarea {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: transparent;
+	border: 0px;
+	outline: none;
+	resize: none;
+	box-shadow: none;
+}
+#CWSE-overlay-primary .textAreaDisplayed {
+	position: relative;
+	z-index: 2;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 0px;
+	padding-top: 10px;
+	margin-bottom: 10px;
+}
+#CWSE-overlay-primary .optimizer-container p.secondary {
+	margin-top: 0;
+	margin-bottom: 0px;
+	padding: 0;
+	outline: none;
+	line-height: 1;
+}
+#CWSE-overlay-primary .optimizer-container p.secondary span {
+	font-weight: bold;
+	color: red;
+	font-size: 14px;
+}
+#CWSE-overlay-primary .optimizer-container p.secondary span.once {
+	color: #5E6F56;
+}
+#CWSE-overlay-primary .optimizer-container p.msg {
+	color: #5e6f56;
+	font-size: 12px;
+	margin-top: 0px;
+}
+#CWSE-overlay-primary .optimizer-container section.editPath {
+	padding-top: 20px;
+	border-top: 1px dashed gray; /*border-top: 1px dashed #5E6F56;*/
+	display: none;
+}
+#CWSE-overlay-primary .optimizer-container section.editPath h1 {
+	display: inline-block;
+	float: left;
+	padding: 0;
+	font-size: 24px;
+	font-weight: normal;
+}
+#CWSE-overlay-primary .optimizer-container.show section.editPath {
+	display: block;
+}
+#CWSE-overlay-primary .optimizer-container section.editPath button {
+	float: right;
+	padding: 5px 10px;
+	color: #080808;
+	border: 1px solid #080808;
+	border-radius: 6px;
+	background-color: #F4F1F2;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 0;
+	font-weight: normal;
+}
+#CWSE-overlay-primary .optimizer-container section.editPath button:hover {
+	text-shadow: none;
+}
+#CWSE-overlay-primary .extraSelectors {
+	clear: both;
+	padding-top: 8px;
+}
+#CWSE-overlay-primary .extraSelectors div {
+
+	/*background-color: #AE849F;*/ padding: 5px 10px 5px 10px;
+	border-radius: 10px; /*margin-bottom: 10px;*/
+}
+#CWSE-overlay-primary .extraSelectors .uneditable {
+	background-color: #AE849F;
+	color: #F4F1F2;
+	background-repeat: no-repeat;
+	background-position: 93%;
+	display: inline-block;
+	padding-right: 30px;
+	margin-right: 10px;
+}
+#CWSE-overlay-primary .extraSelectors .uneditable.root {
+	display: block;
+	margin-right: 0px;
+	background-position: 99%;
+}
+#CWSE-overlay-primary .extraSelectors .editable {
+	background-color: #E8C7EA;
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 10px;
+	transition: background-color 0.5s ease;
+}
+#CWSE-overlay-primary .extraSelectors .editable:last-child {
+	background-color: #E8C7EA;
+}
+#CWSE-overlay-primary .extraSelectors .added .editable {
+	background-color: #AE849F;
+}
+#CWSE-overlay-primary .extraSelectors .added.editable {
+	background-color: #AE849F;
+	color: #F4F1F2;
+}
+#CWSE-overlay-primary .extraSelectors .editable:hover {
+	background-color: #AE849F;
+}
+#CWSE-overlay-primary .extraSelectors .editable.added:hover {
+	background-color: #E8C7EA;
+}

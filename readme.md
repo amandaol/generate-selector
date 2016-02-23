@@ -35,3 +35,7 @@ Icon made by [Freepik](http://www.flaticon.com) and licensed under [CC BY 3.0](h
 v.1.1 - Generate the path on alt+click. Auto copies to clipboard.
 
 v.2.1 - Added the ability to edit the selector path. This may be needed in cases where the HTML is unusually deep or complex, or simply poorly built.
+
+v.2.2 - Chrome web store forced me to update one version number or it wouldn't allow the upload of this extension to the store (I assume this is a bug on their end). That is the only change that occured in this version. 
+
+v.2.3 - Restructured directories/files, added main.css, small tweak or two to the JS and CSS.
